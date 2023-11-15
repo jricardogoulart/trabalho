@@ -8,22 +8,30 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>SIGA v2.0</title>
     <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
         :root {
             --color01: #F5F5F5;
-            --color02: #3498DB;
+            --color02: #08578b;
             --color03: #2ECC71;
             --color04: #313131;
             --color05: #666666;
             --color06: #DADADA;
             --color07: #FFA500;
+            --color08: #c77e00;
 
             --fonte01: Ubuntu, sans-serif;
             --fonte02: monospace;
+            --fonte03: Rubik, sans-serif;
         }
 
         body {
             font-family: var(--fonte01);
             background-color: #d3d3d3;
+        }
+
+        p {
+            font-family: var(--fonte03);
         }
 
         header {
@@ -42,19 +50,20 @@
         nav {
             color: var(--color01);
             background-color: var(--color05);
+            font-family: var(--fonte02);
 
         }
 
         nav a {
             padding: 10px;
             cursor: pointer;
-            transition: 300ms;
+            transition: 500ms;
             border-radius: 5px;
 
         }
 
         nav a:hover {
-            background-color: #666666;
+            background-color: #444444;
             text-decoration: underline;
         }
 
@@ -67,8 +76,28 @@
 
 
         section {
-            flex: 1;
-            padding: 20px;
+            padding: 10px;
+    
+        }
+
+        section a{
+            padding: 7px;
+            background-color: var(--color02);
+            color: var(--color01);
+            text-decoration: none;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: 300ms;
+        }
+
+        section a:hover{
+            text-decoration: underline;
+            background-color: deepskyblue;
+        }
+
+        section#aluno{
+            background-color: var(--color08);
+            color: var(--color06);
         }
 
         footer{
@@ -89,14 +118,14 @@
         <img src="siga2.0.svg" alt="Siga v2.0">
         <h1>Sistema de Integração e Gerenciamento de Alunos</h1>
     </header>
-    <nav class="navbar navbar-dark bg-dark justify-content-start  ">
+    <nav class="navbar navbar-dark bg-dark justify-content-start pl-3">
         <a class="navbar-brand" href="#home">Home</a>
         <a class="navbar-brand" href="#aluno">Aluno</a>
         <a class="navbar-brand" href="#secretaria">Secretaria</a>
     </nav>
     <main class="flex-column">
 
-        <section id="home" class="container-fluid pb-5">
+        <section id="home" class="container-fluid">
             <h2>Seja Bem-Vindo(a)!</h2>
             <p>Bem-vindo ao nosso site, a principal plataforma de gestão escolar dedicada a facilitar e otimizar todos
                 os aspectos do ambiente educacional. Aqui, oferecemos um sistema abrangente para a administração
@@ -108,7 +137,7 @@
                 transformar a experiência escolar, promovendo uma gestão educacional eficiente e moderna.</p>
             </section>
 
-            <section id="aluno" class="container-fluid pb-5">
+            <section id="aluno" class="container-fluid">
                 <h2>Área do Aluno</h2>
                 <p>Explore a seção exclusiva para alunos em nosso site, onde proporcionamos uma experiência
                     personalizada e interativa para otimizar seu percurso educacional. Aqui, os alunos têm acesso rápido
@@ -119,11 +148,12 @@
                     tarefas administrativas, mas também fortalece a conexão entre alunos e o processo de aprendizado.
                     Descubra as vantagens da nossa plataforma e embarque em uma jornada educacional mais organizada e
                     eficiente.</p>
+                    <a href="">Entrar</a>
             </section>
 
             
 
-            <section id="secretaria" class="container-fluid pb-5">
+            <section id="secretaria" class="container-fluid">
                 <h2>Área do Secretário</h2>
                 <p>Bem-vindo à área da secretaria em nosso site, o epicentro do gerenciamento escolar. Aqui, a equipe da
                     secretaria encontra ferramentas poderosas para facilitar e aprimorar as tarefas administrativas
@@ -134,6 +164,8 @@
                     simplificando a coordenação de eventos, calendários e demais aspectos administrativos. Descubra como
                     nossa plataforma pode transformar a maneira como a secretaria gerencia as operações escolares,
                     promovendo maior eficiência e precisão em todas as atividades administrativas.</p>
+                    <a href="">Entrar</a>
+            
 
             </section>
 
