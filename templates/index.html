@@ -73,11 +73,30 @@
             display: flex;
         }
 
+        section div{
+            background-image: linear-gradient(to right, rgb(255, 236, 197), rgb(231, 178, 99));
+            width: 100%;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding: 30px 20px 80px 20px;
+        }
 
+        section div img{
+            width: 600px;
+        }
 
         section {
             padding: 10px;
     
+        }
+
+        section h2{
+            text-transform: uppercase;
+        }
+
+        section#home h2{
+            text-align: center;
         }
 
         section a{
@@ -116,7 +135,7 @@
 
     <header>
         <img src="siga2.0.svg" alt="Siga v2.0">
-        <h1>Sistema de Integração e Gerenciamento de Alunos</h1>
+        <h1>Sistema Integrado de Gestão Acadêmica</h1>
     </header>
     <nav class="navbar navbar-dark bg-dark justify-content-start pl-3">
         <a class="navbar-brand" href="#home">Home</a>
@@ -127,6 +146,7 @@
 
         <section id="home" class="container-fluid">
             <h2>Seja Bem-Vindo(a)!</h2>
+            <div><img src="home-img.png" alt="Imagem da Atualização do sistema"></div>
             <p>Bem-vindo ao nosso site, a principal plataforma de gestão escolar dedicada a facilitar e otimizar todos
                 os aspectos do ambiente educacional. Aqui, oferecemos um sistema abrangente para a administração
                 eficiente de escolas, proporcionando um ambiente centralizado para gerenciar informações acadêmicas,
@@ -135,6 +155,7 @@
                 intuitivas e poderosas que promovem uma administração mais eficaz, permitindo que as instituições de
                 ensino foquem no mais importante: o sucesso educacional dos alunos. Descubra como nosso site pode
                 transformar a experiência escolar, promovendo uma gestão educacional eficiente e moderna.</p>
+                
             </section>
 
             <section id="aluno" class="container-fluid">
