@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request,redirect, url_for,flash
 import mysql.connector
 
+# db = mysql.connector.connect
+# (host='mysql01.cgkdrobnydiy.us-east-1.rds.amazonaws.com',
+#  user='aluno_fatec', password='aluno_fatec',database='meu_banco')
+
 app = Flask(__name__)
 
 @app.route('/')
