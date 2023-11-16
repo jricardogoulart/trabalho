@@ -35,12 +35,10 @@
         }
 
         header {
-            display: flex;
             background-color: var(--color04);
             color: var(--color01);
             padding: 20px;
             text-align: center;
-
         }
 
         header img {
@@ -100,6 +98,7 @@
         }
 
         section a{
+            font-size: 2em;
             padding: 7px;
             background-color: var(--color02);
             color: var(--color01);
@@ -111,7 +110,7 @@
 
         section a:hover{
             text-decoration: underline;
-            background-color: deepskyblue;
+            background-color: rgb(6, 128, 168);
         }
 
         section#aluno{
@@ -134,7 +133,7 @@
 <body>
 
     <header>
-        <img src="siga2.0.svg" alt="Siga v2.0">
+        <img src="../static/siga2.0.svg" alt="Siga v2.0">
         <h1>Sistema Integrado de Gestão Acadêmica</h1>
     </header>
     <nav class="navbar navbar-dark bg-dark justify-content-start pl-3">
@@ -146,7 +145,7 @@
 
         <section id="home" class="container-fluid">
             <h2>Seja Bem-Vindo(a)!</h2>
-            <div><img src="home-img.png" alt="Imagem da Atualização do sistema"></div>
+            <div><img src="../static/home-img.png" alt="Imagem da Atualização do sistema"></div>
             <p>Bem-vindo ao nosso site, a principal plataforma de gestão escolar dedicada a facilitar e otimizar todos
                 os aspectos do ambiente educacional. Aqui, oferecemos um sistema abrangente para a administração
                 eficiente de escolas, proporcionando um ambiente centralizado para gerenciar informações acadêmicas,
@@ -169,7 +168,7 @@
                     tarefas administrativas, mas também fortalece a conexão entre alunos e o processo de aprendizado.
                     Descubra as vantagens da nossa plataforma e embarque em uma jornada educacional mais organizada e
                     eficiente.</p>
-                    <a href="">Entrar</a>
+                    <a href="/studentLogin">Entrar</a>
             </section>
 
             
@@ -185,7 +184,7 @@
                     simplificando a coordenação de eventos, calendários e demais aspectos administrativos. Descubra como
                     nossa plataforma pode transformar a maneira como a secretaria gerencia as operações escolares,
                     promovendo maior eficiência e precisão em todas as atividades administrativas.</p>
-                    <a href="">Entrar</a>
+                    <a href="/secretaryLogin">Entrar</a>
             
 
             </section>
