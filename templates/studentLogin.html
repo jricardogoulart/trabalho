@@ -27,7 +27,7 @@
 
         body {
             font-family: var(--fonte01);
-            background-color: #d3d3d3;
+            background-color: #FFA500;
             display: flex;
             flex-direction: column;
             min-height: 100vh; /* Defina a altura mínima da visualização para 100% da altura da tela */
@@ -77,11 +77,31 @@
             flex: 1;
         }
 
+        div#studentLogin{
+            font-family: var(--fonte03);
+            padding: 30px;
+            border-radius: 15px;
+            background-image: linear-gradient(to left, var(--color05), black);
+        }
+
+        div h2{
+            font-size: 2.0em;
+            color: var(--color01);
+        }
+
+        label{
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            font-family: var(--fonte03);
+            font-size: 1.2em;
+            letter-spacing: 1.5px;
+        }
+
         footer {
             background-color: var(--color04);
             color: var(--color01);
             text-align: center;
-            padding: 10px;
+            padding-top:16px;
         }
     </style>
 </head>
@@ -100,9 +120,9 @@
     <main class="flex-column">
         <section class="container mt-4 container-fluid">
             <div class="row justify-content-center">
-                <div class="col-md-4">
+                <div id="studentLogin" class="col-md-4">
                     <h2 class="text-center mb-4">Login do Aluno</h2>
-                    <form>
+                    <form action="/studentLogin">
                         <div class="mb-3">
                             <label for="cpf" class="form-label">CPF:</label>
                             <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite seu CPF"
