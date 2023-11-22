@@ -79,17 +79,14 @@ def cadastrar_alunos():
 
 @app.route('/cadastrar_funcionarios')
 def cadastrar_funcionarios():
-    
     return render_template('cadastrar_funcionarios.html')
 
 @app.route('/cadastrar_disciplinas')
 def cadastrar_disciplinas():
-    
     return render_template('cadastrar_disciplinas.html')
 
 @app.route('/cadastrar_notas')
 def cadastrar_notas():
-    
     return render_template('cadastrar_notas.html')
 
 if __name__ == '__main__':
