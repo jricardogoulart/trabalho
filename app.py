@@ -85,9 +85,8 @@ def saveStudent():
     cpf = request.form.get('cpf')
     senha = request.form.get('senha')
 
-    select_query = 'INSERT INTO * FROM ze_TB_alunos (cpf,nome,senha) VALUES(%s,%s,%s)'
-    values = (cpf,nome,senha)
-    mycursor.execute(select_query,values)
+    select_query = 'INSERT INTO  ze_TB_alunos (cpf,nome,senha) VALUES(%s,%s,%s)'
+    mycursor.execute(select_query,(cpf,nome,senha))
     db.commit()
 
 
