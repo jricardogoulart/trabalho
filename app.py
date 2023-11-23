@@ -89,13 +89,27 @@ def saveStudent():
     mycursor.execute(select_query,(cpf,nome,senha))
     db.commit()
 
-
-    return 'Aluno Cadastradado com Sucesso!'
+    return 'Aluno Cadastradado com Sucesso! <br> <a href="secretaryHomeScreen">Acesse novamente a Home</a>'
 
 @app.route('/cadastrar_funcionarios')
 def cadastrar_funcionarios():
     return render_template('cadastrar_funcionarios.html')
 
+@app.route('/saveAcademic', methods=['POST'])
+def saveAcademic():
+    
+    nome = request.form.get('nome')
+    email = request.form.get('email')
+    cpf = request.form.get('cpf')
+    login = request.form.get('login')
+    senha = request.form.get('senha')
+    
+    select_query = 'INSERT INTO  ze_TB_academic (nome,email,cpf,login,senha) VALUES(%s,%s,%s,%s,%s)'
+    mycursor.execute(select_query,(nome,email,cpf,login,senha))
+    db.commit()
+    
+    return 'Funcionário Cadastradado com Sucesso! <br> <a href="secretaryHomeScreen">Acesse novamente a Home</a>'
+    
 @app.route('/cadastrar_disciplinas')
 def cadastrar_disciplinas():
     return render_template('cadastrar_disciplinas.html')
