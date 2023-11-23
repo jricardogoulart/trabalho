@@ -73,9 +73,25 @@ def secretaryHomeScreen():
    return render_template('secretaryHome.html')
 
 # Rotas pós-login das 4 Funções da Secretaria: 
+
+#Cadastrar Aluno:
 @app.route('/cadastrar_alunos')
 def cadastrar_alunos():
     return render_template('cadastrar_alunos.html')
+
+@app.route('/saveStudent',methods=['POST'])
+def saveStudent():
+    nome = request.form.get('nome')
+    cpf = request.form.get('cpf')
+    senha = request.form.get('senha')
+
+    select_query = 'INSERT INTO * FROM ze_TB_alunos (cpf,nome,senha) VALUES(%s,%s,%s)'
+    values = (cpf,nome,senha)
+    mycursor.execute(select_query,values)
+    db.commit()
+
+
+    return 'Aluno Cadastradado com Sucesso!'
 
 @app.route('/cadastrar_funcionarios')
 def cadastrar_funcionarios():
