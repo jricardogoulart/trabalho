@@ -114,6 +114,17 @@ def saveAcademic():
 def cadastrar_disciplinas():
     return render_template('cadastrar_disciplinas.html')
 
+@app.route('/saveDisciplina',methods=['POST'])
+def saveDisciplina():
+    
+    disciplina = request.form.get('disciplina')
+
+    select_query = 'INSERT INTO ze_TB_disciplina (disciplina) VALUE(%s)'
+    mycursor.execute(select_query,(disciplina,))
+    db.commit()
+
+    return 'Disciplina Cadastrada com Sucesso! <br> <a href="secretaryHomeScreen"> Acesse novamente a Home</a>'
+
 @app.route('/cadastrar_notas')
 def cadastrar_notas():
     return render_template('cadastrar_notas.html')
