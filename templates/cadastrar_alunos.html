@@ -27,7 +27,7 @@
 
         body {
             font-family: var(--fonte01);
-            background-color: #FFA500;
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
             min-height: 100vh; /* Defina a altura mínima da visualização para 100% da altura da tela */
@@ -90,6 +90,26 @@
             text-align: center;
             padding-top:16px;
         }
+        .table-container {
+            text-align: center;
+            background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.589);
+            padding: 20px;
+            color: #fff;
+            margin: 20px auto;
+        }
+
+        table {
+            text-align: left;
+            border-collapse: collapse;
+            width: 30%;
+        }
+        #tabelinha{
+            background-image: linear-gradient(to bottom, grey, #fff);
+        }
+
+        
     </style>
 </head>
 
@@ -118,16 +138,33 @@
                             <label for="senha" class="form-label">Senha:</label>
                             <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite a nova senha do Aluno" required>
                         </div>
-                        <button id="cadastrar" type="submit" class="btn btn-primary" >Cadastrar</button>
+                        <button id="cadastrar" type="submit" class="btn btn-primary" onclick="cadastro()">Cadastrar</button>
                     </form>
                 </div>
+            </div>
+        </section>
+        <section id="tabelinha">
+            <div class="table-container mt-20">
+                <h2>Tabela dos Alunos</h2>
+                <table class="table table-dark table-striped-columns">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                      
+                    </tr>
+                    {% for aluno in alunos %}
+                    <tr>
+                        <td>{{aluno[0]}}</td>
+                        <td>{{aluno[1]}}</td>
+                    </tr>
+                    {%endfor%}
+                </table>
             </div>
         </section>
     </main>
     <footer>
         <p>Copyright &copy; jricardogoulart - Todos os Direitos Reservados</p>
     </footer>
-
 </body>
 
 </html>

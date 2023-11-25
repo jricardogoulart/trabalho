@@ -77,7 +77,12 @@ def secretaryHomeScreen():
 #Cadastrar Aluno:
 @app.route('/cadastrar_alunos')
 def cadastrar_alunos():
-    return render_template('cadastrar_alunos.html')
+
+    select_query = "select id, nome from ze_TB_alunos"
+    mycursor.execute(select_query)
+    resultado = mycursor.fetchall()
+
+    return render_template('cadastrar_alunos.html',alunos = resultado)
 
 @app.route('/saveStudent',methods=['POST'])
 def saveStudent():
@@ -89,7 +94,7 @@ def saveStudent():
     mycursor.execute(select_query,(cpf,nome,senha))
     db.commit()
 
-    return 'Aluno Cadastradado com Sucesso! <br> <a href="secretaryHomeScreen">Acesse novamente a Home</a>'
+    return redirect(url_for('cadastrar_alunos'))
 
 @app.route('/cadastrar_funcionarios')
 def cadastrar_funcionarios():
