@@ -49,7 +49,7 @@
         }
 
         section {
-            padding: 10px;
+
             flex: 1; /* Faz com que a seção ocupe todo o espaço restante na vertical */
         }
 
@@ -63,13 +63,15 @@
             font-family: var(--fonte03);
             padding: 30px;
             border-radius: 15px;
+            width: 500px;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
             
         }
 
         div h2{
-            font-size: 2.0em;
             color: var(--color01);
+            padding-bottom: 10px;
+            font-size: 2.5em;
         }
 
         label{
@@ -81,7 +83,7 @@
         }
 
         #cadastrar{
-            margin-top: 10px;
+            
             width: 100%;
         }
         footer {
@@ -94,7 +96,7 @@
             text-align: center;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.589);
+            box-shadow: 3 5 10px rgba(0, 0, 0, 0.795);
             padding: 20px;
             color: #fff;
             margin: 20px auto;
@@ -103,11 +105,18 @@
         table {
             text-align: left;
             border-collapse: collapse;
-            width: 30%;
         }
-        #tabelinha{
+        #cadastrados{
             background-image: linear-gradient(to bottom, grey, #fff);
         }
+
+        #tabelaAlunos{
+            width: 550px;
+        }
+        .alinharT{
+            text-align: center;
+        }
+
 
         
     </style>
@@ -120,13 +129,14 @@
         <h1>Sistema Integrado de Gestão Acadêmica</h1>
     </header>
    
-    <main class="flex-column">
+    <main>
         <section class="container mt-4 container-fluid">
             <div class="row justify-content-center">
-                <div id="formulario" class="col-md-4">
+                <div id="formulario" class="col-md-4" style="
+                margin-bottom: 25px;">
                     <h2 class="text-center mb-4">Cadastro do Aluno</h2>
-                    <form action="/saveStudent" method="POST" >
-                        <div class="mb-3">
+                    <form action="/cadastrar_alunos" method="POST">
+                        <div>
                             <label for="nome" class="form-label">Nome:</label>
                             <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do Aluno" required>
                         </div>
@@ -143,19 +153,22 @@
                 </div>
             </div>
         </section>
-        <section id="tabelinha">
-            <div class="table-container mt-20">
+        <section id="cadastrados">
+            <div class="table-container mt-20" id="tabelaAlunos">
                 <h2>Tabela dos Alunos</h2>
                 <table class="table table-dark table-striped-columns">
-                    <tr>
+                    <tr class="alinharT">
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>CPF</th>
                       
                     </tr>
                     {% for aluno in alunos %}
                     <tr>
-                        <td>{{aluno[0]}}</td>
+                        <td class="alinharT">{{aluno[0]}}</td>
                         <td>{{aluno[1]}}</td>
+                        <td class="alinharT">{{aluno[2]}}</td>
+
                     </tr>
                     {%endfor%}
                 </table>

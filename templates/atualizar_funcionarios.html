@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Cadastro de Disciplina</title>
+    <title>Update Academics</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
@@ -27,10 +27,11 @@
 
         body {
             font-family: var(--fonte01);
-            background-color: #dbdbdb;
+            background-color: #cfcfcf;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Defina a altura mínima da visualização para 100% da altura da tela */
+            min-height: 100vh;
+            /* Defina a altura mínima da visualização para 100% da altura da tela */
         }
 
         p {
@@ -49,8 +50,9 @@
         }
 
         section {
-           padding: 45px;
-            flex: 1; /* Faz com que a seção ocupe todo o espaço restante na vertical */
+            padding: 10px;
+            flex: 1;
+            /* Faz com que a seção ocupe todo o espaço restante na vertical */
         }
 
         main {
@@ -59,20 +61,20 @@
             flex: 1;
         }
 
-        div#formulario{
+        div#formulario {
             font-family: var(--fonte03);
             padding: 30px;
             border-radius: 15px;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
-            
         }
 
-        div h2{
-            font-size: 2.0em;
+        div h2 {
             color: var(--color01);
+            padding-bottom: 10px;
+            font-size: 2.5em;
         }
 
-        label{
+        label {
             color: rgb(255, 255, 255);
             font-weight: bold;
             font-family: var(--fonte03);
@@ -80,16 +82,18 @@
             letter-spacing: 1.5px;
         }
 
-        #cadastrar{
+        #cadastrar {
             margin-top: 10px;
             width: 100%;
         }
+
         footer {
             background-color: var(--color04);
             color: var(--color01);
             text-align: center;
-            padding-top:16px;
+            padding-top: 16px;
         }
+
         .table-container {
             text-align: center;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
@@ -105,18 +109,15 @@
             border-collapse: collapse;
 
         }
-        #cadastrados{
+
+        #cadastrados {
             background-image: linear-gradient(to bottom, grey, #fff);
         }
 
-    
-        .alinharT{
+
+        .alinharT {
             text-align: center;
         }
-        #tabelaDisciplinas{
-            width: 450px;
-        }
-
     </style>
 </head>
 
@@ -126,37 +127,41 @@
         <img src="../static/siga2.0.svg" alt="Siga v2.0">
         <h1>Sistema Integrado de Gestão Acadêmica</h1>
     </header>
-   
+
     <main class="flex-column">
         <section class="container mt-4 container-fluid">
             <div class="row justify-content-center">
                 <div id="formulario" class="col-md-4">
-                    <h2 class="text-center mb-4">Cadastro de Disciplina</h2>
-                    <form action="/cadastrar_disciplinas" method="POST" >
+                    <h2 class="text-center mb-3">Atualizar do Funcionário</h2>
+                    <form action="/updateAcademic" method="POST">
                         <div class="mb-3">
-                            <label for="nome" class="form-label">Nome da Disciplina:</label>
-                            <input type="text" class="form-control" id="nome" name="disciplina" placeholder="Digite o nome da Disciplina" required>
+                            <label for="nome" class="form-label">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="nome"
+                                placeholder="Atualize o nome do Funcionário" required>
                         </div>
-                        <button id="cadastrar" type="submit" class="btn btn-primary" >Cadastrar</button>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail:</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Atualize o e-mail do Funcionário" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cpf" class="form-label">CPF:</label>
+                            <input type="text" class="form-control" id="cpf" name="cpf"
+                                placeholder="Atualize o CPF do Funcionário" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="login" class="form-label">Login:</label>
+                            <input type="text" class="form-control" id="login" name="login"
+                                placeholder="Atualize o novo login do Funcionário" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">Senha:</label>
+                            <input type="password" class="form-control" id="senha" name="senha"
+                                placeholder="Atualize a nova senha do Funcionário" required>
+                        </div>
+                        <button id="cadastrar" type="submit" class="btn btn-primary">Atualizar</button>
                     </form>
                 </div>
-            </div>
-        </section>
-        <section id="cadastrados">
-            <div class="table-container mt-20" id="tabelaDisciplinas">
-                <h2>Tabela das Disiciplinas</h2>
-                <table class="table table-dark table-striped-columns">
-                    <tr class="alinharT">
-                        <th>ID</th>
-                        <th>Disciplina</th>
-                    </tr>
-                    {% for disciplina in disciplinas %}
-                    <tr>
-                        <td class="alinharT">{{disciplina[0]}}</td>
-                        <td class="alinharT">{{disciplina[1]}}</td>
-                    </tr>
-                    {%endfor%}
-                </table>
             </div>
         </section>
     </main>

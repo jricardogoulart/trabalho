@@ -9,7 +9,6 @@ db = mysql.connector.connect(
         password='aluno_fatec',
         database='meu_banco'
     )
-
 mycursor = db.cursor()
 
 # Rota da página inicial
@@ -44,7 +43,6 @@ def secretaryLogin():
          # O login foi bem-sucedido, redirecione para a página principal ou faça o que for necessário
         return secretaryHomeScreen()
 
-   
 @app.route('/studentLogin', methods=['POST'])
 def studentLogin():
     cpf = request.form.get('cpf')
@@ -61,8 +59,6 @@ def studentLogin():
          # O login foi bem-sucedido, redirecione para a página principal ou faça o que for necessário
         return studentHomeScreen()
 
-
-
 # Rotas pós-login
 @app.route('/studentHomeScreen')
 def studentHomeScreen():
@@ -73,65 +69,122 @@ def secretaryHomeScreen():
    return render_template('secretaryHome.html')
 
 # Rotas pós-login das 4 Funções da Secretaria: 
-
-#Cadastrar Aluno:
-@app.route('/cadastrar_alunos')
+#Cadastrar Aluno e Salvar Cadastro:
+@app.route('/cadastrar_alunos',methods=['GET','POST'])
 def cadastrar_alunos():
+    if request.method =='GET':
+     
+     select_query = "SELECT id, nome, cpf FROM ze_TB_alunos"
+     mycursor.execute(select_query)
+     resultado = mycursor.fetchall()
 
-    select_query = "select id, nome from ze_TB_alunos"
-    mycursor.execute(select_query)
-    resultado = mycursor.fetchall()
+     return render_template('cadastrar_alunos.html',alunos = resultado)
+    
+    if request.method == 'POST':
+        
+     nome = request.form.get('nome')
+     cpf = request.form.get('cpf')
+     senha = request.form.get('senha')
 
-    return render_template('cadastrar_alunos.html',alunos = resultado)
+     select_query = 'INSERT INTO  ze_TB_alunos (cpf,nome,senha) VALUES(%s,%s,%s)'
+     mycursor.execute(select_query,(cpf,nome,senha))
+     db.commit()
 
-@app.route('/saveStudent',methods=['POST'])
-def saveStudent():
-    nome = request.form.get('nome')
-    cpf = request.form.get('cpf')
-    senha = request.form.get('senha')
+     return redirect(url_for('cadastrar_alunos'))
+    
+    return render_template('cadastrar_notas.html')
 
-    select_query = 'INSERT INTO  ze_TB_alunos (cpf,nome,senha) VALUES(%s,%s,%s)'
-    mycursor.execute(select_query,(cpf,nome,senha))
-    db.commit()
+#Atualizar aluno cadastrado
+@app.route('/updateAluno')
+def updateAluno():
+    return render_template('atualizar_alunos.html')
 
-    return redirect(url_for('cadastrar_alunos'))
-
-@app.route('/cadastrar_funcionarios')
+#Cadastrar Funcionário e Salvar Cadastro:
+@app.route('/cadastrar_funcionarios',methods=['GET','POST'])
 def cadastrar_funcionarios():
+    if request.method == "GET":
+     
+     select_query = "select id, cpf, nome, email, login from ze_TB_academic"
+     mycursor.execute(select_query)
+     resultado = mycursor.fetchall()
+
+     return render_template('cadastrar_funcionarios.html',academic = resultado)
+
+    if request.method == "POST":
+     
+     nome = request.form.get('nome')
+     email = request.form.get('email')
+     cpf = request.form.get('cpf')
+     login = request.form.get('login')
+     senha = request.form.get('senha')
+    
+     select_query = 'INSERT INTO  ze_TB_academic (nome,email,cpf,login,senha) VALUES(%s,%s,%s,%s,%s)'
+     mycursor.execute(select_query,(nome,email,cpf,login,senha))
+     db.commit()
+    
+     return redirect(url_for('cadastrar_funcionarios'))
+    
     return render_template('cadastrar_funcionarios.html')
 
-@app.route('/saveAcademic', methods=['POST'])
-def saveAcademic():
-    
-    nome = request.form.get('nome')
-    email = request.form.get('email')
-    cpf = request.form.get('cpf')
-    login = request.form.get('login')
-    senha = request.form.get('senha')
-    
-    select_query = 'INSERT INTO  ze_TB_academic (nome,email,cpf,login,senha) VALUES(%s,%s,%s,%s,%s)'
-    mycursor.execute(select_query,(nome,email,cpf,login,senha))
-    db.commit()
-    
-    return 'Funcionário Cadastradado com Sucesso! <br> <a href="secretaryHomeScreen">Acesse novamente a Home</a>'
-    
-@app.route('/cadastrar_disciplinas')
+#Atualizar Cadastro do funcionário
+@app.route('/updateAcademic')
+def updateAcademic():
+
+    return render_template('atualizar_funcionarios.html')
+
+#Cadastrar Disciplina e Salvar Cadastro:   
+@app.route('/cadastrar_disciplinas', methods=['GET','POST'])
 def cadastrar_disciplinas():
-    return render_template('cadastrar_disciplinas.html')
 
-@app.route('/saveDisciplina',methods=['POST'])
-def saveDisciplina():
+    if request.method == 'GET':
+     
+     select_query = 'SELECT * FROM ze_TB_disciplina'
+     mycursor.execute(select_query)
+     disciplina = mycursor.fetchall()
+     return render_template('cadastrar_disciplinas.html', disciplinas = disciplina)
+
+    if request.method == 'POST':
+     
+     disciplina = request.form.get('disciplina')
+     select_query = 'INSERT INTO ze_TB_disciplina (disciplina) VALUE(%s)'
+     mycursor.execute(select_query,(disciplina,))
+     db.commit()
+
+     return redirect(url_for('cadastrar_disciplinas'))
     
-    disciplina = request.form.get('disciplina')
+    return render_template('cadastrar_funcionarios.html')
 
-    select_query = 'INSERT INTO ze_TB_disciplina (disciplina) VALUE(%s)'
-    mycursor.execute(select_query,(disciplina,))
-    db.commit()
-
-    return 'Disciplina Cadastrada com Sucesso! <br> <a href="secretaryHomeScreen"> Acesse novamente a Home</a>'
-
-@app.route('/cadastrar_notas')
+#Cadastrar Notas e Salvar Cadastro:
+@app.route('/cadastrar_notas', methods=['GET','POST'])
 def cadastrar_notas():
+
+    if request.method == 'GET':
+        select_query = 'select * from ze_TB_alunos '
+        mycursor.execute(select_query)
+        aluno = mycursor.fetchall()
+
+        select_query1= 'select * from ze_TB_disciplina'
+        mycursor.execute(select_query1)
+        materia = mycursor.fetchall()
+
+        return render_template('cadastrar_notas.html', alunos = aluno, materias = materia)
+    
+    if request.method == 'POST':
+
+        nota1 = float(request.form['nota1'])
+        nota2 = float(request.form['nota2'])
+        nota3 = float(request.form['nota3'])
+        nota4 = float(request.form['nota4'])
+        media = round((nota1 + nota2 + nota3 + nota4)/4,2)
+        idAluno = request.form.get('selectAluno')
+        idMateria = request.form.get('selectMateria')
+
+        select_query = 'INSERT INTO ze_TB_notas (nota1,nota2,nota3,nota4,id_Aluno,id_Materia,media) VALUES (%s,%s,%s,%s,%s,%s,%s)'
+
+        mycursor.execute(select_query,(nota1,nota2,nota3,nota4,idAluno,idMateria,media))
+        db.commit()
+        return redirect(url_for('cadastrar_notas'))
+    
     return render_template('cadastrar_notas.html')
 
 if __name__ == '__main__':
