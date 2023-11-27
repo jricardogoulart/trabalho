@@ -104,7 +104,7 @@ def updateAluno():
 def cadastrar_funcionarios():
     if request.method == "GET":
      
-     select_query = "select id, cpf, nome, email, login from ze_TB_academic"
+     select_query = "SELECT id, cpf, nome, email, login from ze_TB_academic"
      mycursor.execute(select_query)
      resultado = mycursor.fetchall()
 
@@ -159,11 +159,11 @@ def cadastrar_disciplinas():
 def cadastrar_notas():
 
     if request.method == 'GET':
-        select_query = 'select * from ze_TB_alunos '
+        select_query = 'SELECT * FROM ze_TB_alunos '
         mycursor.execute(select_query)
         aluno = mycursor.fetchall()
 
-        select_query1= 'select * from ze_TB_disciplina'
+        select_query1= 'SELECT * FROM ze_TB_disciplina'
         mycursor.execute(select_query1)
         materia = mycursor.fetchall()
 
