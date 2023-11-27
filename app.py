@@ -94,9 +94,41 @@ def cadastrar_alunos():
     
     return render_template('cadastrar_notas.html')
 
+#Excluir Aluno
+@app.route('/deleteAluno/<aluno>')
+def deleteAluno(aluno):
+   select_query = "DELETE from ze_TB_alunos where id = '" + aluno + "'"
+   print(select_query)
+   mycursor.execute(select_query)
+   db.commit()
+   return redirect(url_for('cadastrar_alunos'))
+   
+
 #Atualizar aluno cadastrado
-@app.route('/updateAluno')
-def updateAluno():
+@app.route('/updateAluno/<int:id>', methods=['GET'])
+def updateAluno(id):
+
+    select_query = "SELECT * FROM ze_TB_alunos WHERE id = %s"
+    mycursor.execute(select_query, (id,))
+    aluno = mycursor.fetchone()
+
+    return render_template('atualizar_alunos.html', aluno = aluno)
+
+@app.route('/updateAluno', methods=['POST'])
+def update_aluno():
+    if request.method == 'POST':
+
+        id = request.form['id']
+        nome = request.form['nome']
+        cpf = request.form['cpf']
+        senha = request.form['senha']
+
+        select_query = "UPDATE ze_TB_alunos SET nome = %s,cpf = %s,senha = %s WHERE id = %s"
+        mycursor.execute(select_query, (nome,cpf,senha,id,))
+        db.commit()
+        
+        return redirect(url_for('cadastrar_alunos'))
+    
     return render_template('atualizar_alunos.html')
 
 #Cadastrar Funcionário e Salvar Cadastro:
@@ -126,6 +158,15 @@ def cadastrar_funcionarios():
     
     return render_template('cadastrar_funcionarios.html')
 
+#Excluir Funcionário
+@app.route('/deleteFuncionario/<academic>')
+def deleteFuncionario(academic):
+   select_query = "DELETE from ze_TB_academic where id = '" + academic + "'"
+   print(select_query)
+   mycursor.execute(select_query)
+   db.commit()
+   return redirect(url_for('cadastrar_funcionarios'))
+
 #Atualizar Cadastro do funcionário
 @app.route('/updateAcademic')
 def updateAcademic():
@@ -154,6 +195,15 @@ def cadastrar_disciplinas():
     
     return render_template('cadastrar_funcionarios.html')
 
+#Excluir Disciplina
+@app.route('/deleteDisciplina/<disciplina>')
+def deleteDisciplina(disciplina):
+   select_query = "DELETE from ze_TB_disciplina where id = '" + disciplina + "'"
+   print(select_query)
+   mycursor.execute(select_query)
+   db.commit()
+   return redirect(url_for('cadastrar_disciplinas'))
+
 #Cadastrar Notas e Salvar Cadastro:
 @app.route('/cadastrar_notas', methods=['GET','POST'])
 def cadastrar_notas():
@@ -179,9 +229,9 @@ def cadastrar_notas():
         idAluno = request.form.get('selectAluno')
         idMateria = request.form.get('selectMateria')
 
-        select_query = 'INSERT INTO ze_TB_notas (nota1,nota2,nota3,nota4,id_Aluno,id_Materia,media) VALUES (%s,%s,%s,%s,%s,%s,%s)'
+        select_query = 'INSERT INTO ze_TB_notas (id_Aluno,id_Materia,nota1,nota2,nota3,nota4,media) VALUES (%s,%s,%s,%s,%s,%s,%s)'
 
-        mycursor.execute(select_query,(nota1,nota2,nota3,nota4,idAluno,idMateria,media))
+        mycursor.execute(select_query,(idAluno,idMateria,nota1,nota2,nota3,nota4,media))
         db.commit()
         return redirect(url_for('cadastrar_notas'))
     

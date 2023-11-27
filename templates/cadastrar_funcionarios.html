@@ -30,7 +30,8 @@
             background-color: #cfcfcf;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Defina a altura mínima da visualização para 100% da altura da tela */
+            min-height: 100vh;
+            /* Defina a altura mínima da visualização para 100% da altura da tela */
         }
 
         p {
@@ -47,6 +48,7 @@
         header img {
             width: 200px;
         }
+
         nav {
             color: var(--color01);
             background-color: var(--color05);
@@ -63,9 +65,11 @@
         nav a:hover {
             background-color: #444444;
         }
+
         section {
             padding: 10px;
-            flex: 1; /* Faz com que a seção ocupe todo o espaço restante na vertical */
+            flex: 1;
+            /* Faz com que a seção ocupe todo o espaço restante na vertical */
         }
 
         main {
@@ -74,20 +78,20 @@
             flex: 1;
         }
 
-        div#formulario{
+        div#formulario {
             font-family: var(--fonte03);
             padding: 30px;
             border-radius: 15px;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
         }
 
-        div h2{
+        div h2 {
             color: var(--color01);
             padding-bottom: 10px;
             font-size: 2.5em;
         }
 
-        label{
+        label {
             color: rgb(255, 255, 255);
             font-weight: bold;
             font-family: var(--fonte03);
@@ -95,16 +99,18 @@
             letter-spacing: 1.5px;
         }
 
-        #cadastrar{
+        #cadastrar {
             margin-top: 10px;
             width: 100%;
         }
+
         footer {
             background-color: var(--color04);
             color: var(--color01);
             text-align: center;
-            padding-top:16px;
+            padding-top: 16px;
         }
+
         .table-container {
             text-align: center;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
@@ -120,19 +126,24 @@
             border-collapse: collapse;
 
         }
-        #cadastrados{
+
+        #cadastrados {
             background-image: linear-gradient(to bottom, grey, #fff);
         }
 
-    
-        .alinharT{
+
+        .alinharT {
             text-align: center;
         }
-        svg{
+
+        svg {
             margin: 5px;
+            border-radius: 5px;
         }
 
-
+        svg:hover {
+            fill: rgb(255, 145, 0);
+        }
     </style>
 </head>
 
@@ -143,9 +154,11 @@
         <h1>Sistema Integrado de Gestão Acadêmica</h1>
     </header>
     <nav class="navbar navbar-dark bg-dark justify-content-start pl-3">
-        <a class="navbar-brand" href="secretaryHomeScreen"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-          </svg>Voltar</a>
+        <a class="navbar-brand" href="secretaryHomeScreen"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+            </svg>Voltar</a>
     </nav>
     <main class="flex-column">
         <section class="container mt-4 container-fluid">
@@ -155,23 +168,28 @@
                     <form action="/cadastrar_funcionarios" method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do Funcionário" required>
+                            <input type="text" class="form-control" id="nome" name="nome"
+                                placeholder="Digite o nome do Funcionário" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">E-mail:</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail do Funcionário" required>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Digite o e-mail do Funcionário" required>
                         </div>
                         <div class="mb-3">
                             <label for="cpf" class="form-label">CPF:</label>
-                            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF do Funcionário" required>
+                            <input type="text" class="form-control" id="cpf" name="cpf"
+                                placeholder="Digite o CPF do Funcionário" required>
                         </div>
                         <div class="mb-3">
                             <label for="login" class="form-label">Login:</label>
-                            <input type="text" class="form-control" id="login" name="login" placeholder="Digite o novo login do Funcionário" required>
+                            <input type="text" class="form-control" id="login" name="login"
+                                placeholder="Digite o novo login do Funcionário" required>
                         </div>
                         <div class="mb-3">
                             <label for="senha" class="form-label">Senha:</label>
-                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite a nova senha do Funcionário" required>
+                            <input type="password" class="form-control" id="senha" name="senha"
+                                placeholder="Digite a nova senha do Funcionário" required>
                         </div>
                         <button id="cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
@@ -188,6 +206,7 @@
                         <th>Nome</th>
                         <th>E-mail</th>
                         <th>Login</th>
+                        <th>Excluir</th>
                     </tr>
                     {% for academics in academic %}
                     <tr>
@@ -196,6 +215,25 @@
                         <td>{{academics[2]}}</td>
                         <td>{{academics[3]}}</td>
                         <td class="alinharT">{{academics[4]}}</td>
+                        <td class="alinharT"><a href={{ url_for("deleteFuncionario", academic=academics[0]) }}><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                    <path
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                </svg></a></td>
+                        <td id="colorBotom" class="center"><a><svg
+              xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil-square"
+              viewBox="0 0 16 16">
+              <path
+                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+              <path fill-rule="evenodd"
+                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+            </svg></a></td>
+
+
+            
                     </tr>
                     {%endfor%}
                 </table>

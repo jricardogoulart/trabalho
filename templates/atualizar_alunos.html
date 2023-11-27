@@ -138,17 +138,17 @@
                     <form action="/updateAluno" method="POST">
                         <div>
                             <label for="nome" class="form-label">Nome:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Atualize o nome do Aluno" required>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Atualize o nome do Aluno" required value="{{aluno[2]}}">
                         </div>
                         <div class="mb-3">
                             <label for="cpf" class="form-label">CPF:</label>
-                            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Atualize o CPF do aluno" required>
+                            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Atualize o CPF do aluno" required value="{{aluno[1]}}">
                         </div>
                         <div class="mb-3">
                             <label for="senha" class="form-label">Senha:</label>
-                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Atualize a nova senha do Aluno" required>
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Atualize a nova senha do Aluno" required value="{{aluno[3]}}">
                         </div>
-                        <button id="cadastrar" type="submit" class="btn btn-primary" onclick="cadastro()">Cadastrar</button>
+                        <button id="cadastrar" name="id" value="{{aluno[0]}}" type="submit" class="btn btn-primary" onclick="cadastro()">Atualizar</button>
                     </form>
                 </div>
             </div>

@@ -30,7 +30,8 @@
             background-color: #dbdbdb;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Defina a altura mínima da visualização para 100% da altura da tela */
+            min-height: 100vh;
+            /* Defina a altura mínima da visualização para 100% da altura da tela */
         }
 
         p {
@@ -47,6 +48,7 @@
         header img {
             width: 200px;
         }
+
         nav {
             color: var(--color01);
             background-color: var(--color05);
@@ -65,8 +67,9 @@
         }
 
         section {
-           padding: 45px;
-            flex: 1; /* Faz com que a seção ocupe todo o espaço restante na vertical */
+            padding: 45px;
+            flex: 1;
+            /* Faz com que a seção ocupe todo o espaço restante na vertical */
         }
 
         main {
@@ -75,20 +78,20 @@
             flex: 1;
         }
 
-        div#formulario{
+        div#formulario {
             font-family: var(--fonte03);
             padding: 30px;
             border-radius: 15px;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
-            
+
         }
 
-        div h2{
+        div h2 {
             font-size: 2.0em;
             color: var(--color01);
         }
 
-        label{
+        label {
             color: rgb(255, 255, 255);
             font-weight: bold;
             font-family: var(--fonte03);
@@ -96,16 +99,18 @@
             letter-spacing: 1.5px;
         }
 
-        #cadastrar{
+        #cadastrar {
             margin-top: 10px;
             width: 100%;
         }
+
         footer {
             background-color: var(--color04);
             color: var(--color01);
             text-align: center;
-            padding-top:16px;
+            padding-top: 16px;
         }
+
         .table-container {
             text-align: center;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
@@ -121,22 +126,28 @@
             border-collapse: collapse;
 
         }
-        #cadastrados{
+
+        #cadastrados {
             background-image: linear-gradient(to bottom, grey, #fff);
         }
 
-    
-        .alinharT{
+
+        .alinharT {
             text-align: center;
         }
-        #tabelaDisciplinas{
+
+        #tabelaDisciplinas {
             width: 450px;
         }
-        svg{
+
+        svg {
             margin: 5px;
+            border-radius: 5px;
         }
 
-
+        svg:hover {
+            fill: rgb(255, 145, 0);
+        }
     </style>
 </head>
 
@@ -147,22 +158,25 @@
         <h1>Sistema Integrado de Gestão Acadêmica</h1>
     </header>
     <nav class="navbar navbar-dark bg-dark justify-content-start pl-3">
-        <a class="navbar-brand" href="secretaryHomeScreen"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-          </svg>Voltar</a>
+        <a class="navbar-brand" href="secretaryHomeScreen"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+            </svg>Voltar</a>
     </nav>
-   
+
     <main class="flex-column">
         <section class="container mt-4 container-fluid">
             <div class="row justify-content-center">
                 <div id="formulario" class="col-md-4">
                     <h2 class="text-center mb-4">Cadastro de Disciplina</h2>
-                    <form action="/cadastrar_disciplinas" method="POST" >
+                    <form action="/cadastrar_disciplinas" method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome da Disciplina:</label>
-                            <input type="text" class="form-control" id="nome" name="disciplina" placeholder="Digite o nome da Disciplina" required>
+                            <input type="text" class="form-control" id="nome" name="disciplina"
+                                placeholder="Digite o nome da Disciplina" required>
                         </div>
-                        <button id="cadastrar" type="submit" class="btn btn-primary" >Cadastrar</button>
+                        <button id="cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
                 </div>
             </div>
@@ -174,11 +188,20 @@
                     <tr class="alinharT">
                         <th>ID</th>
                         <th>Disciplina</th>
+                        <th>Excluir</th>
                     </tr>
                     {% for disciplina in disciplinas %}
                     <tr>
                         <td class="alinharT">{{disciplina[0]}}</td>
                         <td class="alinharT">{{disciplina[1]}}</td>
+                        <td class="alinharT"><a href={{ url_for("deleteDisciplina", disciplina=disciplina[0]) }}><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                    <path
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                </svg></a></td>
                     </tr>
                     {%endfor%}
                 </table>
