@@ -168,10 +168,35 @@ def deleteFuncionario(academic):
    return redirect(url_for('cadastrar_funcionarios'))
 
 #Atualizar Cadastro do funcionário
-@app.route('/updateAcademic')
-def updateAcademic():
+@app.route('/updateAcademic/<int:id>', methods=['GET'])
+def updateAcademic(id):
 
+    select_query = "SELECT * FROM ze_TB_academic WHERE id = %s"
+    mycursor.execute(select_query, (id,))
+    academic = mycursor.fetchone()
+
+    return render_template('atualizar_funcionarios.html', academic = academic)
+
+@app.route('/updateAcademic', methods=['POST'])
+def update_academic():
+
+    if request.method == 'POST':
+
+        id = request.form['id']
+        nome = request.form['nome']
+        email = request.form['email']
+        cpf = request.form['cpf']
+        login = request.form['login']
+        senha = request.form['senha']
+
+        select_query = "UPDATE ze_TB_academic SET cpf = %s,nome = %s,email = %s, login = %s, senha = %s WHERE id = %s"
+        mycursor.execute(select_query, (cpf,nome,email,login,senha,id,))
+        db.commit()
+        
+        return redirect(url_for('cadastrar_funcionarios'))
+    
     return render_template('atualizar_funcionarios.html')
+
 
 #Cadastrar Disciplina e Salvar Cadastro:   
 @app.route('/cadastrar_disciplinas', methods=['GET','POST'])
@@ -195,6 +220,31 @@ def cadastrar_disciplinas():
     
     return render_template('cadastrar_funcionarios.html')
 
+# Atualizar Disciplina
+@app.route('/updateDisciplina/<int:id>', methods=['GET'])
+def updateDisciplina(id):    
+
+    select_query = "SELECT * FROM ze_TB_disciplina WHERE id = %s"
+    mycursor.execute(select_query, (id,))
+    disciplina = mycursor.fetchone()
+
+    return render_template('atualizar_disciplina.html', disciplina = disciplina)
+
+@app.route('/updateDisciplina', methods=['POST'])
+def update_diciplina():
+    if request.method == 'POST':
+
+        id = request.form['id']
+        disciplina = request.form['disciplina']
+
+        select_query = "UPDATE ze_TB_disciplina SET disciplina = %s WHERE id = %s"
+        mycursor.execute(select_query, (disciplina,id,))
+        db.commit()
+        
+        return redirect(url_for('cadastrar_disciplinas'))
+    
+    return render_template('atualizar_disicplina.html')
+
 #Excluir Disciplina
 @app.route('/deleteDisciplina/<disciplina>')
 def deleteDisciplina(disciplina):
@@ -217,7 +267,11 @@ def cadastrar_notas():
         mycursor.execute(select_query1)
         materia = mycursor.fetchall()
 
-        return render_template('cadastrar_notas.html', alunos = aluno, materias = materia)
+        select_query2 = 'SELECT * FROM ze_TB_notas'
+        mycursor.execute(select_query2)
+        nota = mycursor.fetchall()
+
+        return render_template('cadastrar_notas.html', alunos = aluno, materias = materia,notas = nota)
     
     if request.method == 'POST':
 
@@ -233,9 +287,50 @@ def cadastrar_notas():
 
         mycursor.execute(select_query,(idAluno,idMateria,nota1,nota2,nota3,nota4,media))
         db.commit()
+
         return redirect(url_for('cadastrar_notas'))
     
     return render_template('cadastrar_notas.html')
+
+#Excluir Nota
+@app.route('/deleteNotas/<nota>')
+def deleteNota(nota):
+   select_query = "DELETE from ze_TB_nota where id = '" + nota + "'"
+   print(select_query)
+   mycursor.execute(select_query)
+   db.commit()
+   return redirect(url_for('cadastrar_notas'))
+
+#Atualizar Notas
+@app.route('/updateNotas/<int:idNotas>', methods=['GET'])
+def updateNotas(idNotas):    
+
+    select_query = "SELECT * FROM ze_TB_notas WHERE idNotas = %s"
+    mycursor.execute(select_query, (idNotas,))
+    notas = mycursor.fetchone()
+
+    return render_template('atualizar_notas.html', notas = notas)
+
+@app.route('/updateNotas', methods=['POST'])
+def update_notas():
+    if request.method == 'POST':
+
+        idNotas = request.form.get('idNotas')
+        idAluno = request.form['idAluno']
+        idMateria = request.form['idMateria']
+        nota1 = float(request.form['nota1'])
+        nota2 = float(request.form['nota2'])
+        nota3 = float(request.form['nota3'])
+        nota4 = float(request.form['nota4'])
+        media = round((nota1 + nota2 + nota3 + nota4)/4,2)
+
+        select_query = "UPDATE ze_TB_notas SET id_Aluno = %s, id_Materia = %s, nota1 = %s, nota2 = %s, nota3 = %s, nota4 = %s, media = %s WHERE idNotas = %s"
+        mycursor.execute(select_query, (idAluno,idMateria,nota1,nota2,nota3,nota4,media,idNotas,))
+        db.commit()
+        
+        return redirect(url_for('cadastrar_notas'))
+    
+    return render_template('atualizar_notas.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
