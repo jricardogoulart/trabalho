@@ -51,23 +51,22 @@
 
         nav a:hover {
             background-color: #444444;
-            text-decoration: underline;
         }
 
         main {
+            padding-top: 20px;
             display: flex;
-            width: 100vh;
-            padding-top: 15px;
             flex: 1;
         }
+
         .table-container {
             text-align: center;
             background-image: linear-gradient(to bottom, rgb(31, 31, 31), rgba(0, 0, 0, 0.795));
             border-radius: 10px;
             box-shadow: 3 5 10px rgba(0, 0, 0, 0.795);
-            padding: 20px;
+            padding: 10px;
             color: #fff;
-            margin: 20px auto;
+
         }
 
         table {
@@ -79,9 +78,7 @@
             background-image: linear-gradient(to bottom, grey, #fff);
         }
 
-        #tabelaAlunos {
-            width: 100vh;
-        }
+
 
         .alinharT {
             text-align: center;
@@ -97,9 +94,14 @@
         }
 
         footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             background-color: var(--color04);
             color: var(--color01);
             text-align: center;
+            padding: 10px;
+            /* Adicionei um preenchimento para melhorar a aparência */
         }
 
         footer p {
@@ -112,39 +114,41 @@
 
     <header>
         <img src="../static/siga2.0.svg" alt="Siga v2.0">
-        <h1>Sistema Integrado de Gestão Acadêmica</h1>
+        <h1>Boletim do Aluno</h1>
     </header>
     <nav class="navbar navbar-dark bg-dark justify-content-start pl-3">
-        <a class="navbar-brand" href="#home">Home</a>
-        <a class="navbar-brand" href="#aluno">Aluno</a>
-        <a class="navbar-brand" href="#secretaria">Secretaria</a>
+        <a class="navbar-brand" href="index"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+          </svg>Voltar</a>
     </nav>
-    <main class="flex-column container d-flex justify-content-center align-items-center" style="height: 100vh;">
-        
-            <div class=" card text-bg-secondary mb-3" style="min-width: 610px;">
-                <div class="card-header"><h5 class="card-title">João Silva</h5></div>
-                <div class="card-body">
-                    <h5 class="card-title">Boletim Escolar</h5>
-                    <h5 class="card-title">CPF: 000000000000</h5>
-                    <div class="table-container mt-20" id="tabelaAlunos">
-                        <table class="table table-dark table-striped-columns">
-                            <tr class="alinharT">
-                                <th>Disciplina</th>
-                                <th>Nota 1ºBimestre</th>
-                                <th>Nota 2ºBimestre</th>
-                                <th>Nota 3ºBimestre</th>
-                                <th>Nota 4ºBimestre</th>
-                                <th>Média Final</th>
-                            </tr>
+    <main class="container justify-content-center">
 
-                            <tr>
-                               
-                            </tr>
-                           
-                        </table>
-                    </div>
+        <div class=" card text-bg-secondary mb-3" style="min-width: 620px;">
+            <div class="card-header">
+                <h5 class="card-title">João Silva</h5>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Boletim Escolar</h5>
+                <h5 class="card-title">CPF: 000000000000</h5>
+                <div class="table-container mt-20" id="tabelaAlunos">
+                    <table class="table table-dark table-striped-columns">
+                        <tr class="alinharT">
+                            <th>Disciplina</th>
+                            <th>Nota 1ºBimestre</th>
+                            <th>Nota 2ºBimestre</th>
+                            <th>Nota 3ºBimestre</th>
+                            <th>Nota 4ºBimestre</th>
+                            <th>Média Final</th>
+                        </tr>
+
+                        <tr>
+
+                        </tr>
+
+                    </table>
                 </div>
-      
+            </div>
+
 
 
     </main>
