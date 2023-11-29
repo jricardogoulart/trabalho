@@ -4,7 +4,7 @@ import mysql.connector
 app = Flask(__name__)
 
 db = mysql.connector.connect(
-        host='',
+        host='mysql01.cgkdrobnydiy.us-east-1.rds.amazonaws.com',
         user='aluno_fatec',
         password='aluno_fatec',
         database='meu_banco'
@@ -53,16 +53,14 @@ def studentLogin():
     result = mycursor.fetchone()
     
     if result is None:
-         # O login falhou, redirecione para a página de login ou exiba uma mensagem de erro
-        return 'Usuário Inválido <br> <a href="studentLoginScreen">Acesse novamente o Login</a>'      
-    else:
-         # O login foi bem-sucedido, redirecione para a página principal ou faça o que for necessário
-        return studentHomeScreen()
+       return render_template('studentLoginScreen.html')
+    
+    select_query = ('SELECT m.disciplina, n.nota1, n.nota2, n.nota3, n.nota4, n.media FROM ze_TB_notas n INNER JOIN ze_TB_disciplina m ON n.id_Materia = m.id WHERE n.id_Aluno = %s')
+    mycursor.execute(select_query,(result[0],))
+    materia = mycursor.fetchall()
 
-# Rotas pós-login
-@app.route('/studentHomeScreen')
-def studentHomeScreen():
-   return render_template ('studentHome.html')
+    return render_template('studentHome.html', result= result, materias = materia)
+    
 
 @app.route('/secretaryHomeScreen')
 def secretaryHomeScreen():
@@ -246,12 +244,21 @@ def update_diciplina():
     return render_template('atualizar_disicplina.html')
 
 #Excluir Disciplina
-@app.route('/deleteDisciplina/<disciplina>')
+@app.route('/deleteDisciplina/<disciplina>',methods=['GET'])
 def deleteDisciplina(disciplina):
-   select_query = "DELETE from ze_TB_disciplina where id = '" + disciplina + "'"
-   print(select_query)
-   mycursor.execute(select_query)
+   
+   queryVerificadora = "SELECT * FROM ze_TB_notas WHERE id_Materia = %s"
+   mycursor.execute(queryVerificadora, (disciplina,))
+   alunosCad = mycursor.fetchone()[0]
+   
+   if alunosCad > 0:
+     message = "A Disciplina está associada a pelo menos um aluno, não é possível excluí-la."
+     return render_template('cadastrar_disciplinas.html',message = message)
+   
+   select_query = "DELETE from ze_TB_disciplina where id = %s"
+   mycursor.execute(select_query,(disciplina,))
    db.commit()
+
    return redirect(url_for('cadastrar_disciplinas'))
 
 #Cadastrar Notas e Salvar Cadastro:
@@ -259,6 +266,7 @@ def deleteDisciplina(disciplina):
 def cadastrar_notas():
 
     if request.method == 'GET':
+
         select_query = 'SELECT * FROM ze_TB_alunos '
         mycursor.execute(select_query)
         aluno = mycursor.fetchall()
@@ -267,11 +275,15 @@ def cadastrar_notas():
         mycursor.execute(select_query1)
         materia = mycursor.fetchall()
 
-        select_query2 = 'SELECT * FROM ze_TB_notas'
+       
+        select_query2 = ('SELECT idNotas, a.nome, m.disciplina, n.nota1, n.nota2, n.nota3, n.nota4 FROM ze_TB_notas n INNER JOIN ze_TB_disciplina m ON n.id_Materia = m.id INNER JOIN ze_TB_alunos a ON n.id_Aluno = a.id')
         mycursor.execute(select_query2)
         nota = mycursor.fetchall()
+        
 
-        return render_template('cadastrar_notas.html', alunos = aluno, materias = materia,notas = nota)
+
+
+        return render_template('cadastrar_notas.html', alunos = aluno, materias = materia ,notas = nota)
     
     if request.method == 'POST':
 
